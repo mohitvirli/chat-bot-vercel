@@ -10,15 +10,6 @@ export default function Chat({ model }: { model: ModelType }) {
     body: { model }
   });
 
-  /**
-   * Auto scrolls when messages are updated.
-   */
-  const scrollToBottom = useScrollToBottom();
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
   return (
     <ScrollToBottom className='h-screen'>
       <div className="flex flex-col w-full max-w-screen-sm py-24 mx-auto stretch">
