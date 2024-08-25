@@ -11,7 +11,7 @@ import { MessageType, ModelType } from '@/app/models';
  * @returns
  */
 export async function POST(req: Request) {
-  const { messages, model }: {messages: MessageType[], model: ModelType} = await req.json();
+  const { messages, model } = await req.json();
 
   // Map according to the models available.
   const modelMap: { [k in ModelType]: any }  = {
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     Claude: anthropic('claude-3-haiku-20240307'),
   }
   const result = await streamText({
-    model: modelMap[model],
+    model: modelMap[model as ModelType],
     messages: convertToCoreMessages(messages),
   });
 
